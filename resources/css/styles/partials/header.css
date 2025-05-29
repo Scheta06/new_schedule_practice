@@ -1,0 +1,43 @@
+header.header {
+    min-height: 100px;
+    padding: 0 var(--pg150);
+}
+
+.logotype {
+    font-size: var(--font-size0);
+    letter-spacing: 6px;
+    font-weight: var(--bold);
+}
+
+button.nav-bar-btn {
+    width: 25px;
+    height: 20px;
+    z-index: 999;
+}
+
+.nav-bar-row {
+    width: 100%;
+    height: 4px;
+    border-radius: var(--border-radius3);
+    background-color: var(--color2);
+}
+
+.nav-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 350px;
+    width: 100%;
+    padding: 100px 50px;
+    background-color: var(--color7);
+}
+
+.nav-bar>ul>li {
+    font-weight: var(--bold);
+}
+
+@media (max-width:768px) {
+    header.header {
+        padding: var(--pg20);
+    }
+}

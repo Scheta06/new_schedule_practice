@@ -1,0 +1,18 @@
+.form-control {
+  max-width: 600px;
+  text-align: center;
+  gap: 50px;
+  align-items: center;
+}
+
+.form-control > h1 {
+  font-weight: var(--bold);
+}
+
+.login {
+  width: 100%;
+  max-width: 350px;
+  min-height: 100px;
+  font-size: var(--font-size2);
+  font-weight: var(--bold);
+}

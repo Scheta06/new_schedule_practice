@@ -1,0 +1,52 @@
+.profile-section {
+    gap: var(--gap40);
+}
+
+.profile-photo {
+    max-width: 150px;
+    min-height: 150px;
+    background-color: var(--color7);
+    border-radius: 50%;
+}
+
+.profile-info > h2 {
+    font-weight: var(--bold);
+}
+
+button.editProfile {
+    font-size: var(--font-size4);
+    font-weight: var(--bold);
+    min-height: 60px;
+    max-width: 350px;
+}
+
+.car-section {
+    margin-top: 100px;
+    gap: var(--gap40);
+}
+
+.car-section > div > h2 {
+    font-weight: var(--bold);
+}
+
+.car-block {
+    gap: var(--gap40);
+}
+
+.car-item {
+    min-width: 320px;
+    min-height: 400px;
+    background-color: var(--color7);
+    border-radius: var(--border-radius0);
+    padding: var(--pg30);
+}
+
+.car-info-title {
+    text-align: end;
+}
+
+.car-title {
+    text-align: center;
+    font-size: var(--font-size4);
+    font-weight: bold;
+}
