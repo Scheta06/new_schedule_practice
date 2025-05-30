@@ -12,7 +12,7 @@ class Pattern extends Model
     ];
 
     public function mark() {
-        return $this->hasMany(Mark::class);
+        return $this->belongsTo(Mark::class);
     }
 
     public function generation() {

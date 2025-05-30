@@ -10,8 +10,13 @@ class Car extends Model
         'title',
         'user_id',
         'mark_id',
-        'extence_id',
+        'pattern_id',
+        'generation_id',
     ];
+
+    public function extence() {
+        return $this->hasMany(Extence::class, 'car_id');
+    }
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -21,7 +26,11 @@ class Car extends Model
         return $this->belongsTo(Mark::class);
     }
 
-    public function extence() {
-        return $this->belongsTo(Extence::class);
+    public function pattern() {
+        return $this->belongsTo(Pattern::class);
+    }
+
+    public function generation() {
+        return $this->belongsTo(Generation::class);
     }
 }

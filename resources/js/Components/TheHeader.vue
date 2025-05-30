@@ -9,7 +9,7 @@
     <div class="nav-bar full-height" v-if="visible">
       <ul class="column-display gap30">
         <li class="list-item" v-for="item in links" :key="item">
-          <Link :href="route(`${item.href}`)" method="POST">
+          <Link :href="route(`${item.href}`)" :method="item.method">
             {{ item.title }}
           </Link>
         </li>
@@ -27,11 +27,20 @@ import { Link } from "@inertiajs/vue3";
 const links = reactive([
     {
         title: 'Мой профиль',
-        href: 'profile'
+        href: 'myCars',
+        method: 'GET'
     },
     {
         title: 'Выйти',
-        href: 'logout'
+        href: 'logout',
+        method: 'POST'
     },
 ]);
 </script>
+
+<style scoped>
+li.list-item > button, li.list-item > a {
+    font-weight: var(--bold);
+    font-size: var(--font-size2);
+}
+</style>

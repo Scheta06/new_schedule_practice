@@ -56,4 +56,8 @@ class User extends Authenticatable
     public function car() {
         return $this->hasMany(Car::class, 'user_id');
     }
+
+    public function extence() {
+        return $this->hasMany(Extence::class, 'user_id');
+    }
 }

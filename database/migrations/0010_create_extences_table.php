@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->float('cost');
 
+            $table->foreignId('car_id')->references('id')->on('cars')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('category_id')->references('id')->on('extence_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

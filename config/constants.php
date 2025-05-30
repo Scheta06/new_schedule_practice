@@ -4,9 +4,9 @@ return [
     'seed' => [
         /*Начальные данные для пользователя*/
         'UserSeeder' => [
-            'surname' => 'Кононов',
-            'name' => 'Андрей',
-            'patronymic' => 'Николаевич',
+            'surname' => 'кононов',
+            'name' => 'андрей',
+            'patronymic' => 'николаевич',
             'email' => 'user@example.com',
             'password' => '123123123',
             'role' => 'admin',
@@ -64,7 +64,8 @@ return [
             [
                 'title' => 'Оплатил бензин на 1000р 60л',
                 'cost' => 1000,
-                'category_id' => 1
+                'category_id' => 1,
+                'car_id' => 1
             ],
         ],
         /*Начальные данные для авто пользователя*/
@@ -73,13 +74,15 @@ return [
                 'title' => 'Бешенная табуретка',
                 'user_id' => 1,
                 'mark_id' => 1,
-                'extence_id' => 1,
+                'pattern_id' => 1,
+                'generation_id' => 1,
             ],
             [
                 'title' => 'Бешенная табуретка2',
                 'user_id' => 1,
                 'mark_id' => 2,
-                'extence_id' => 1,
+                'pattern_id' => 1,
+                'generation_id' => 1,
             ],
         ],
     ],

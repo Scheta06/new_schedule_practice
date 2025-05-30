@@ -1,7 +1,10 @@
 <template>
-    <the-header></the-header>
+  <div></div>
 </template>
 
 <script setup>
-
 </script>
+
+<style scoped>
+</style>
+

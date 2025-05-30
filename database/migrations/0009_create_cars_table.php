@@ -25,9 +25,14 @@ return new class extends Migration
                 ->on('marks')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreignId('extence_id')
+            $table->foreignId('pattern_id')
                 ->references('id')
-                ->on('extences')
+                ->on('patterns')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreignId('generation_id')
+                ->references('id')
+                ->on('generations')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();

@@ -10,13 +10,19 @@ class Extence extends Model
         'title',
         'cost',
         'category_id',
+        'user_id',
+        'car_id'
     ];
 
     public function extenceCategory() {
         return $this->belongsTo(ExtenceCategory::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function car() {
-        return $this->hasMany(Car::class, 'extence_id');
+        return $this->belongsTo(Car::class);
     }
 }

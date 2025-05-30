@@ -10,6 +10,7 @@ import { reactive } from "vue";
 import './../css/styles/index.css'
 import './../css/styles/partials/auth.css'
 import './../css/styles/partials/header.css'
+import './../css/styles/cars.css'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

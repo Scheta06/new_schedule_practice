@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\AuthUserMiddleware;
+use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
             \App\Http\Middleware\HandleInertiaRequests::class, //
+        ]);
+
+        $middleware->alias([
+            'authUser' => AuthUserMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

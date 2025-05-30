@@ -1,35 +1,76 @@
 <template>
-  <div>
-    <div class="profile-section flex">
-      <div class="profile-photo full-width"></div>
-      <div class="profile-info full-column-display full-width">
-        <h2>
-
-        </h2>
-        <div class="emal"></div>
-        <router-link to="">
-          <button class="editProfile full-width">Редактировать профиль</button>
-        </router-link>
+  <TheHeader></TheHeader>
+  <div class="container">
+    <div class="profile column-display">
+      <div class="user-section flex gap40">
+        <div class="user-photo full-width"></div>
+        <div class="user-info full-column-display">
+          <h2>
+            {{ fullName }}
+          </h2>
+          <div>
+            <h4>
+              {{ email }}
+            </h4>
+          </div>
+          <button class="edit-btn">Редактировать</button>
+        </div>
       </div>
-    </div>
-    <div class="car-section column-display">
-      <div>
-        <h2>Мои автомобили</h2>
-      </div>
-      <div class="car-block flex flex-wrap full-width">
-        <carCart v-for="item in fetchInfo" :key="item.id" :title="item.title" />
+      <div class="userCars-section column-display gap40 full-width">
+        <div class="createAuto flex gap10">
+          <h2>Мои автомобили</h2>
+          <Link :href="route('addCar')" class="addCar"></Link>
+        </div>
+        <div class="flex flex-wrap gap40">
+          <CarCart
+            v-for="item in carsInfo"
+            :key="item.id"
+            :id="item.id"
+            :title="item.title"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import CarCart from "@/Components/carCart.vue";
+import { Link } from '@inertiajs/vue3'
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+  email: String,
+  carsInfo: {
+    type: Object,
+    required: true,
+  },
+});
 
-import { onMounted } from "vue";
-import carCart from "./../Components/Input.vue";
-import api from "./../services/api.js";
-import { ref, reactive } from "vue";
-const email = ref("admin@bk.ru");
-const fetchInfo = reactive([]);
+const fullName = `
+${capitalize(props.user.surname)}
+${capitalize(props.user.name)}
+${capitalize(props.user.patronymic)}`;
 
+const email = props.email;
+
+function capitalize(item) {
+  return item[0].toUpperCase() + item.substring(1);
+}
 </script>
+
+<style scoped>
+.user-info > h2 {
+  font-weight: var(--bold);
+}
+
+.profile {
+  gap: 100px;
+}
+
+.createAuto > h2 {
+    font-weight: var(--bold);
+}
+</style>

@@ -20,14 +20,22 @@ button {
 h1 {
     font-size: var(--font-size0);
     letter-spacing: 4px;
+    height: 40px;
 }
 
 h2 {
     font-size: var(--font-size1);
+    height: 32px;
 }
 
 h3 {
     font-size: var(--font-size2);
+    height: 28px;
+}
+
+h4 {
+    font-size: var(--font-size3);
+    height: 24px;
 }
 
 a {
@@ -35,7 +43,7 @@ a {
 }
 
 .container {
-    padding: 100px 200px;
+    padding: 200px 200px 100px 200px;
     height: 100%;
 }
 
@@ -60,8 +68,7 @@ ul {
     --font-size0: 2.25rem;
     --font-size1: 1.75rem;
     --font-size2: 1.5rem;
-    --font-size3: 2.25rem;
-    --font-size4: 1.25rem;
+    --font-size3: 1.25rem;
 
     /* Основные bold-ы шрифтов */
 
@@ -78,14 +85,19 @@ ul {
 
     /*Основные отступы*/
 
+    --gap100: 100px;
     --gap40: 40px;
     --gap30: 30px;
     --gap20: 20px;
+    --gap15: 15px;
+    --gap10: 10px;
 
     --pg150: 150px;
     --pg40: 40px;
     --pg30: 30px;
     --pg20: 20px;
+
+    --mrg40: 40px;
 
     /*Основные размеры*/
 
@@ -139,9 +151,9 @@ ul {
 
 .full-center-column-display {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    flex-direction: column;
 }
 
 .center {
@@ -150,12 +162,30 @@ ul {
     align-items: center;
 }
 
-
-
 /* Часто используемые классы */
+
+.gap100 {
+    gap: var(--gap100);
+}
+
+.gap40 {
+    gap: var(--gap40);
+}
+
+.gap30 {
+    gap: var(--gap30);
+}
 
 .gap20 {
     gap: var(--gap20);
+}
+
+.gap15 {
+    gap: var(--gap15);
+}
+
+.gap10 {
+    gap: var(--gap10);
 }
 
 .primary-btn {
@@ -168,6 +198,10 @@ ul {
     min-height: 60px;
     border: 2px solid var(--color7);
     padding: 0 35px;
+}
+
+.bold {
+    font-weight: var(--bold);
 }
 
 @media (max-width:768px) {

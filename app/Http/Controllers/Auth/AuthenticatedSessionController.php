@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return inertia()->location(route('profile'));
+        return inertia()->location(route('myCars'));
     }
 
     /**

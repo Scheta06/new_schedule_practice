@@ -1,23 +1,22 @@
 <template>
-  <div>
-    <Link
-      href="/cars:id"
-      class="car-item full-column-display full-height full-width"
-    >
-      <div class="car-info-title">
-        {{ mark }}
-      </div>
-      <div class="car-title">
-        {{ title }}
-      </div>
-    </Link>
-  </div>
+  <Link :href="route('carCart', {'id' : id})" class="carCart full-width">
+    <h4>
+      {{ title }}
+    </h4>
+  </Link>
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link } from "@inertiajs/vue3";
 defineProps({
-    title: String,
-    mark: String
+  title: String,
+  id: String,
 });
 </script>
+
+<style scoped>
+.carCart > h4 {
+  text-align: center;
+  font-weight: var(--bold);
+}
+</style>

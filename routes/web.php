@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\ProfileController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewCarController;
+use Illuminate\Support\Facades\Route;
 
-Route::middleware(['guest'])->group(function () {
+Route::middleware(['authUser'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
 
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('loginForm');
@@ -16,10 +17,9 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
 });
 
-Route::middleware(['auth'])->group(function() {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cars', [CarController::class, 'index'])->name('myCars');
+    Route::get('/new-car', [NewCarController::class, 'index'])->name('addCar');
+    Route::get('/cars/{id}', [CarController::class, 'show'])->name('carCart');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-    Route::get('/cars')->name('cars');
 });

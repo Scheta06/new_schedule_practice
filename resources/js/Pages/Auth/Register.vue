@@ -58,16 +58,16 @@ const inputValues = reactive([
 ]);
 
 const form = useForm({
-  surname: "",
-  name: "",
-  patronymic: "",
-  email: "",
-  password: "",
+  surname: "".toLowerCase(),
+  name: "".toLowerCase(),
+  patronymic: "".toLowerCase(),
+  email: "".toLowerCase(),
+  password: "".toLowerCase(),
 });
 
 const submit = () => {
   form.post(route('register'), {
-    onFinish: () => form.reset(["password", 'password_confirmation']),
+    onFinish: () => form.reset(),
   });
 };
 </script>
