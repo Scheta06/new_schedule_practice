@@ -7,7 +7,7 @@
       </div>
     </div>
     <div>
-      <Link href="/login" class="full-width">
+      <Link :href="route('loginForm')" class="full-width">
         <button class="login-btn center full-width">Войти</button>
       </Link>
     </div>
@@ -19,9 +19,6 @@ import { ref, reactive } from "vue";
 const companyTitle = ref("MyCar");
 const subTitle = ref("Твой автомобиль - твои расходы");
 import { Link } from '@inertiajs/vue3'
-
-
-
 </script>
 
 <style scoped>

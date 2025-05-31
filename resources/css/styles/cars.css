@@ -30,8 +30,32 @@
 }
 
 .addCar {
-    width: 26px;
-    height: 26px;
+    width: 32px;
+    height: 32px;
     background-color: var(--color7);
     border-radius: 100%;
+    border: 2px solid var(--color2);
+}
+
+.carInfo-item-section {
+    margin-top: var(--mrg40);
+}
+
+.carInfo-item {
+    max-width: 500px;
+    min-height: 402px;
+}
+
+.carInfo-item-medium {
+    max-width: 474.3333px;
+}
+
+.carInfo-item-photo {
+    min-height: 350px;
+    background-color: var(--color7);
+    border-radius: var(--border-radius2);
+}
+
+.carInfo-item-title > h2 {
+    font-weight: var(--bold);
 }

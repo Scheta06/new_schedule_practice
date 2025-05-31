@@ -138,6 +138,11 @@ ul {
     justify-content: space-between;
 }
 
+.center-column {
+    display: flex;
+    align-items: center;
+}
+
 .column-display {
     display: flex;
     flex-direction: column;

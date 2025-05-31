@@ -1,6 +1,6 @@
 <template>
   <header class="header full-center-length">
-    <Link :href="route('index')" class="logotype">
+    <Link :href="route('myCars')" class="logotype">
       {{ logoTitle }}
     </Link>
     <button class="nav-bar-btn full-column-display" @click="visible = !visible">

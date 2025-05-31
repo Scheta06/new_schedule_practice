@@ -19,9 +19,12 @@
       <div class="userCars-section column-display gap40 full-width">
         <div class="createAuto flex gap10">
           <h2>Мои автомобили</h2>
-          <Link :href="route('addCar')" class="addCar"></Link>
+          <Link
+          :href="route(`${href}`)"
+          :carInfo="newCar"
+           class="addCar"></Link>
         </div>
-        <div class="flex flex-wrap gap40">
+        <div :class="[counter > 3 ? `${mainStyles} ${justifySB}`: `${mainStyles}`]">
           <CarCart
             v-for="item in carsInfo"
             :key="item.id"
@@ -35,8 +38,9 @@
 </template>
 
 <script setup>
+import { reactive, ref } from "vue";
 import CarCart from "@/Components/carCart.vue";
-import { Link } from '@inertiajs/vue3'
+import { Link } from "@inertiajs/vue3";
 const props = defineProps({
   user: {
     type: Object,
@@ -47,6 +51,34 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  counter: Number,
+});
+
+const mainStyles = ref('flex flex-wrap gap40');
+const justifySB = ref('for-over-length');
+
+const href = ref("newCar");
+const newCar = reactive({
+    title: 'Новый автомобиль',
+    inputValue: [
+        {
+            name: 'title',
+            placeholder: 'Название (необязательно)',
+            type: 'text',
+        },
+        {
+            name: 'mark_id',
+            placeholder: 'Марка',
+        },
+        {
+            name: 'pattern_id',
+            placeholder: 'Модель',
+        },
+        {
+            name: 'pattern_id',
+            placeholder: 'Поколение',
+        },
+    ]
 });
 
 const fullName = `
@@ -71,6 +103,6 @@ function capitalize(item) {
 }
 
 .createAuto > h2 {
-    font-weight: var(--bold);
+  font-weight: var(--bold);
 }
 </style>

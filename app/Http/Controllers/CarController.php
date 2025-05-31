@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use Inertia\Inertia;
-use function Laravel\Prompts\select;
+use App\Models\ExtenceCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class CarController extends Controller
 {
@@ -13,6 +14,7 @@ class CarController extends Controller
     {
         $user = Auth::user();
         $cars = Car::where('user_id', $user->id)->get();
+        $counterCars = $cars->count();
         return Inertia::render('Cars', [
             'user' => [
                 'surname' => $user->surname,
@@ -21,14 +23,45 @@ class CarController extends Controller
             ],
             'email' => $user->email,
             'carsInfo' => $cars,
+            'counter' => $counterCars,
         ]);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
+        $userId = Auth::user()->id;
         $carInfo = Car::with(['pattern', 'generation', 'mark', 'extence'])->where(['id' => $id])->get();
+        $categories = ExtenceCategory::where(['user_id' => $userId])->get();
+        $counter = $categories->count();
 
         return Inertia::render('Car', [
-            'carInfo' => $carInfo
+            'carInfo' => $carInfo,
+            'user_id' => $userId,
+            'categories' => $categories,
+            'counter' => $counter
         ]);
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
+
+        ExtenceCategory::create([
+            'title' => $validated['title'],
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('myCars')->with('success', 'Категория создана');
+    }
+
+    public function destroy($id)
+    {
+        $car = Car::findOrFail($id);
+
+        $car->delete();
+
+        return redirect()->route('myCars')->with('sussess', 'Автомобиль успешно удален');
     }
 }
