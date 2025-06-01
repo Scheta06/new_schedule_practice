@@ -16,10 +16,12 @@ return [
             [
                 'title' => 'Бензин',
                 'user_id' => 1,
+                'car_id' => 1,
             ],
             [
                 'title' => 'Штрафы',
                 'user_id' => 1,
+                'car_id' => 1,
             ],
         ],
         /*Начальные данные для марок авто*/
@@ -63,6 +65,12 @@ return [
         'ExtenceSeeder' => [
             [
                 'title' => 'Оплатил бензин на 1000р 60л',
+                'cost' => 1000,
+                'category_id' => 1,
+                'car_id' => 1
+            ],
+            [
+                'title' => 'Не успел заправиться',
                 'cost' => 1000,
                 'category_id' => 1,
                 'car_id' => 1

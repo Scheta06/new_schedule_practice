@@ -215,6 +215,6 @@ ul {
     }
 
     .container {
-        padding: var(--pg40);
+        padding: 160px var(--pg40);
     }
 }

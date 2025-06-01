@@ -8,7 +8,8 @@ class ExtenceCategory extends Model
 {
     protected $fillable = [
         'title',
-        'user_id'
+        'user_id',
+        'car_id'
     ];
 
     public function user() {
@@ -17,5 +18,9 @@ class ExtenceCategory extends Model
 
     public function extence() {
         return $this->hasMany(Extence::class, 'category_id');
+    }
+
+    public function car() {
+        return $this->belongsTo(Car::class);
     }
 }

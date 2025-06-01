@@ -11,6 +11,7 @@ import './../css/styles/index.css'
 import './../css/styles/partials/auth.css'
 import './../css/styles/partials/header.css'
 import './../css/styles/cars.css'
+import './../css/styles/categories.css'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

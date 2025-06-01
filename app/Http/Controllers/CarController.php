@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Car;
@@ -14,46 +13,48 @@ class CarController extends Controller
     {
         $user = Auth::user();
         $cars = Car::where('user_id', $user->id)->get();
-        $counterCars = $cars->count();
         return Inertia::render('Cars', [
-            'user' => [
-                'surname' => $user->surname,
-                'name' => $user->name,
+            'user'     => [
+                'surname'    => $user->surname,
+                'name'       => $user->name,
                 'patronymic' => $user->patronymic,
             ],
-            'email' => $user->email,
+            'email'    => $user->email,
             'carsInfo' => $cars,
-            'counter' => $counterCars,
         ]);
     }
 
     public function show($id)
     {
-        $userId = Auth::user()->id;
-        $carInfo = Car::with(['pattern', 'generation', 'mark', 'extence'])->where(['id' => $id])->get();
-        $categories = ExtenceCategory::where(['user_id' => $userId])->get();
-        $counter = $categories->count();
+        $userId     = Auth::user()->id;
+        $carInfo    = Car::with(['pattern', 'generation', 'mark', 'extence'])->where(['id' => $id])->get();
+        $categories = ExtenceCategory::where(['user_id' => $userId, 'car_id' => $id])->get();
 
         return Inertia::render('Car', [
-            'carInfo' => $carInfo,
-            'user_id' => $userId,
+            'carInfo'    => $carInfo,
+            'user_id'    => $userId,
             'categories' => $categories,
-            'counter' => $counter
         ]);
     }
 
-    public function storeCategory(Request $request)
+    public function storeCategory(Request $request, $id)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
         ]);
 
         ExtenceCategory::create([
-            'title' => $validated['title'],
-            'user_id' => Auth::id(),
+            'title'   => $validated['title'],
+            'user_id' => Auth::user()->id,
+            'car_id'  => $request->car_id,
         ]);
 
         return redirect()->route('myCars')->with('success', 'Категория создана');
+    }
+
+    public function update(Request $request, $id)
+    {
+
     }
 
     public function destroy($id)

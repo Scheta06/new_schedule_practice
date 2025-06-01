@@ -1,0 +1,29 @@
+.category-grafic-block {
+    min-height: 400px;
+    background-color: var(--color7);
+    border-radius: var(--border-radius2);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 26px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: var(--bold);
+  font-size: var(--font-size2);
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

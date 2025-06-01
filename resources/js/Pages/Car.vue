@@ -31,18 +31,14 @@
           </form>
         </div>
         <div class="carInfo-item-section flex flex-wrap gap40">
-          <div
-            :class="[
-              counter >= 3 ? `${mainStyles} ${sideStyles}` : `${mainStyles}`,
-            ]"
+          <CategoryCart
+            :class="categories.length >= 3 ? `${mainStyles} ${sideStyles}` : mainStyles"
             v-for="item in categories"
             :key="item"
-          >
-            <div class="carInfo-item-photo"></div>
-            <div class="carInfo-item-title">
-              <h2>{{ item.title }}</h2>
-            </div>
-          </div>
+            :title="item.title"
+            :car_id="id"
+            :category="item.id"
+          />
         </div>
       </div>
     </div>
@@ -50,18 +46,17 @@
 </template>
 
 <script setup>
-import { Link, router } from "@inertiajs/vue3";
-import { ref, reactive } from "vue";
+import CategoryCart from "@/Components/CategoryCart.vue";
+import { Link } from "@inertiajs/vue3";
+import { ref, reactive, computed, onMounted } from "vue";
 const props = defineProps({
   carInfo: Object,
   user_id: Number,
   categories: Object,
-  counter: Number,
 });
 
 const carInfo = reactive(props);
-
-const id = carInfo.id;
+const id = carInfo["carInfo"][0].id;
 
 const mainStyles = ref("carInfo-item full-column-display full-width");
 const sideStyles = ref("carInfo-item-medium");
@@ -96,12 +91,13 @@ function addNewCategory() {
     axios
       .post(route("addCategory", ["id", id]), {
         title: value.trim(),
+        car_id: id,
       })
       .then((response) => {
         window.location.reload();
       })
       .catch((error) => {
-        alert("Ошибка при создании категории");
+        alert(`Ошибка при создании категории`);
       });
   } else {
     alert("Категория не создана - название не может быть пустым");

@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewCarController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
@@ -26,5 +27,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/cars/{id}', [CarController::class, 'show'])->name('carCart');
     Route::post('/cars/{id}', [CarController::class, 'storeCategory'])->name('addCategory');
+    Route::get('/cars/{id}/{category}', [CategoryController::class, 'index'])->name('CategoryCart');
+    Route::post('/cars/{id}/{category}', [CategoryController::class, 'store'])->name('addExtence');
+    Route::post('/cars/{id}/{category}', [CategoryController::class, 'destroy'])->name('destroyExtence');
+
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });

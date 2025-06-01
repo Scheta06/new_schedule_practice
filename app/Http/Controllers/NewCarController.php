@@ -35,7 +35,7 @@ class NewCarController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|string|lowercase',
+            'title' => 'required|string',
             'user_id' => 'required|integer',
             'mark_id' => 'required|integer',
             'pattern_id' => 'required|integer',
