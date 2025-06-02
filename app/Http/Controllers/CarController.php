@@ -2,10 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use App\Models\ExtenceCategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Models\ExtenceCategory;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -21,6 +21,7 @@ class CarController extends Controller
             ],
             'email'    => $user->email,
             'carsInfo' => $cars,
+            '',
         ]);
     }
 
@@ -35,26 +36,6 @@ class CarController extends Controller
             'user_id'    => $userId,
             'categories' => $categories,
         ]);
-    }
-
-    public function storeCategory(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-        ]);
-
-        ExtenceCategory::create([
-            'title'   => $validated['title'],
-            'user_id' => Auth::user()->id,
-            'car_id'  => $request->car_id,
-        ]);
-
-        return redirect()->route('myCars')->with('success', 'Категория создана');
-    }
-
-    public function update(Request $request, $id)
-    {
-
     }
 
     public function destroy($id)

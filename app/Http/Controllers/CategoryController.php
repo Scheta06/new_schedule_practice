@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Extence;
 use App\Models\ExtenceCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
@@ -15,40 +16,32 @@ class CategoryController extends Controller
         return Inertia::render('Category', [
             'categories' => $categories,
             'extences'   => $extences,
+            'id'         => $id,
+            'category'   => $category,
         ]);
     }
 
-    public function edit() {
-
-    }
-
-    public function update(Request $request) {
-
-    }
-
-    public function store(Request $request, $id, $category)
+    public function store(Request $request, $id)
     {
-        $data = $request->validate([
-            'title' => 'string|required',
-            'cost'  => 'float|required',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
         ]);
 
-        Extence::create([
-            'title'       => $data['title'],
-            'cost'        => $data['cost'],
-            'car_id'      => $id,
-            'category_id' => $category,
+        ExtenceCategory::create([
+            'title'   => $validated['title'],
+            'user_id' => Auth::user()->id,
+            'car_id'  => $request->car_id,
         ]);
 
-        return redirect()->route('CategoryCart', ['id' => $id, 'category' => $category])->with('success', 'Расход добавлен');
+        return redirect()->route('carCart', ['id' => $request->car_id])->with('success', 'Категория создана');
     }
 
-    public function destoy($id, $category)
+    public function destroy($carId, $categoryId)
     {
-        $userCategory = ExtenceCategory::findOrFail($category);
+        $category = ExtenceCategory::findOrFail($categoryId);
 
-        $userCategory->delete();
+        $category->delete();
 
-        return redirect()->route('CategoryCart', ['id' => $id, 'category' => $category])->with('success', 'Категория удалена');
+        return redirect()->route('carCart', ['id' => $carId])->with('success', 'Категория удалена');
     }
 }

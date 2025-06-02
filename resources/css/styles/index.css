@@ -17,6 +17,10 @@ button {
     border-radius: var(--border-radius2);
 }
 
+.transparentBtn {
+    background-color: transparent;
+}
+
 h1 {
     font-size: var(--font-size0);
     letter-spacing: 4px;
@@ -161,6 +165,13 @@ ul {
     justify-content: space-between;
 }
 
+.full-center-row-display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -215,6 +226,6 @@ ul {
     }
 
     .container {
-        padding: 160px var(--pg40);
+        padding: 160px 15px;
     }
 }

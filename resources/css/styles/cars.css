@@ -42,7 +42,7 @@
 }
 
 .carInfo-item {
-    max-width: 500px;
+    max-width: calc((100% / 2) - 20px);
     min-height: 402px;
 }
 
@@ -54,6 +54,13 @@
     min-height: 350px;
     background-color: var(--color7);
     border-radius: var(--border-radius2);
+}
+
+.carInfo-item__destroyBtn {
+    background-color: var(--color2);
+    width: 25px;
+    height: 25px;
+    border-radius: 6px;
 }
 
 .carInfo-item-title > h2 {

@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="flex gap10">
-            <Link href="/" class="edit-btn center full-width"
+            <Link href="route('editCar', {id:id})" class="edit-btn center full-width"
               >Редактировать</Link
             >
           </div>
@@ -30,9 +30,21 @@
             <button type="submit" class="addCar"></button>
           </form>
         </div>
+        <div class="selectCategory">
+          <select name="" id="" class="input">
+            <option value="">Выберите категорию расходов</option>
+            <option :value="item.id" v-for="item in categories" :key="item.id">
+              {{ item.title }}
+            </option>
+          </select>
+        </div>
         <div class="carInfo-item-section flex flex-wrap gap40">
           <CategoryCart
-            :class="categories.length >= 3 ? `${mainStyles} ${sideStyles}` : mainStyles"
+            :class="
+              categories.length >= 3
+                ? `${mainStyles} ${sideStyles}`
+                : mainStyles
+            "
             v-for="item in categories"
             :key="item"
             :title="item.title"
@@ -49,6 +61,7 @@
 import CategoryCart from "@/Components/CategoryCart.vue";
 import { Link } from "@inertiajs/vue3";
 import { ref, reactive, computed, onMounted } from "vue";
+import { router } from "@inertiajs/vue3";
 const props = defineProps({
   carInfo: Object,
   user_id: Number,
@@ -61,7 +74,7 @@ const id = carInfo["carInfo"][0].id;
 const mainStyles = ref("carInfo-item full-column-display full-width");
 const sideStyles = ref("carInfo-item-medium");
 
-const carInfoTitle = reactive([
+const carInfoTitle = [
   {
     title: "Название",
     fetchInfo: props.carInfo[0].title,
@@ -78,7 +91,7 @@ const carInfoTitle = reactive([
     title: "Поколение",
     fetchInfo: props.carInfo[0].generation.title,
   },
-]);
+];
 
 function capitalize(val) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -88,19 +101,10 @@ function addNewCategory() {
   const value = prompt("Название категории");
 
   if (value && value.trim() !== "") {
-    axios
-      .post(route("addCategory", ["id", id]), {
-        title: value.trim(),
-        car_id: id,
-      })
-      .then((response) => {
-        window.location.reload();
-      })
-      .catch((error) => {
-        alert(`Ошибка при создании категории`);
-      });
-  } else {
-    alert("Категория не создана - название не может быть пустым");
+    router.post(route("addCategory", ["id", id]), {
+      title: value.trim(),
+      car_id: id,
+    });
   }
 }
 </script>
@@ -118,5 +122,11 @@ function addNewCategory() {
 
 .createAuto > h2 {
   font-weight: var(--bold);
+}
+
+.selectCategory {
+  margin-top: var(--mrg40);
+  max-width: 350px;
+  max-height: 60px;
 }
 </style>
