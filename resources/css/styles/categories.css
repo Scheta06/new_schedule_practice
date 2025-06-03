@@ -1,7 +1,6 @@
 .category-grafic-block {
-    min-height: 400px;
-    background-color: var(--color7);
-    border-radius: var(--border-radius2);
+    min-height: 200px;
+    max-height: 350px;
 }
 
 table {

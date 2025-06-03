@@ -1,7 +1,7 @@
 <template>
   <the-header></the-header>
   <div class="container column-display gap40 full-width">
-    <div class="category-grafic-block full-width"></div>
+    <Grafic :ChartData="ChartData"/>
 
     <div class="column-display gap20 full-width">
       <div class="flex gap15">
@@ -9,7 +9,6 @@
         <button @click="addExtence" class="addCar"></button>
       </div>
     </div>
-
     <div class="extence-section">
       <table>
         <thead>
@@ -32,12 +31,12 @@
                   })
                 "
               >
-                <img src="/public/storage/images/PencilLine.png" />
+                <img src="" />
               </Link>
 
               <form @submit.prevent="deleteExtence(item.id)">
                 <button type="submit" class="transparentBtn">
-                  <img src="/public/storage/images/Trash.png" alt="delete" />
+                  <img src="" alt="delete" />
                 </button>
               </form>
             </td>
@@ -49,24 +48,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import Grafic from '@/Components/Grafic.vue'
+import { reactive, ref } from "vue";
 import { Link, router } from "@inertiajs/vue3";
-import { Line } from "vue-chartjs";
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  LineElement,
-  LinearScale,
-  PointElement,
-  CategoryScale,
-} from "chart.js";
+import GraficVue from "@/Components/Grafic.vue";
 const props = defineProps({
   categories: Object,
   extences: Array,
   id: String,
   category: String,
+  ChartData: Object,
 });
 
 const extentces = ref(props.extences);
@@ -74,6 +65,10 @@ const title = props["categories"].title;
 const theadTitle = ["Название", "Дата", "Сумма", "Действия"];
 const carId = props.id;
 const categoryId = props.category;
+
+function reverseString(item) {
+    return item.split('').reverse().join('');
+}
 
 function addExtence() {
   const title = prompt("Введите название расхода");
@@ -109,7 +104,6 @@ function deleteExtence(extenceId) {
     }),
     {
       onSuccess: () => {
-        // Удаляем элемент из массива после успешного ответа
         extentces.value = extentces.value.filter(
           (item) => item.id !== extenceId
         );
@@ -120,7 +114,7 @@ function deleteExtence(extenceId) {
           "Ошибка при удалении: " + (errors.message || "Неизвестная ошибка")
         );
       },
-      preserveScroll: true, // Опционально: сохранять позицию скролла
+      preserveScroll: true,
     }
   );
 }

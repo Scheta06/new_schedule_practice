@@ -11,17 +11,17 @@ class ExtenceController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'cost'  => 'required|numeric|min:0',
+            'cost' => 'required|numeric|min:0',
         ]);
 
-        $expense = Extence::create([
-            'title'       => $validated['title'],
-            'cost'        => $validated['cost'],
-            'car_id'      => $id,
+        Extence::create([
+            'title' => $validated['title'],
+            'cost' => $validated['cost'],
+            'car_id' => $id,
             'category_id' => $category,
         ]);
 
-        return back()->with('newExpense', $expense);
+        return back()->with('success', 'Расход добавлен');
     }
 
     public function edit($id, $category, $extence)
