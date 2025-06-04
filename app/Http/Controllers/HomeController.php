@@ -14,8 +14,4 @@ class HomeController extends Controller
             'Auth' => $user
         ]);
     }
-
-    public function show() {
-        return Inertia::render('NewObject');
-    }
 }

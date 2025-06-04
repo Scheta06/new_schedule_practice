@@ -17,9 +17,9 @@
             </div>
           </div>
           <div class="flex gap10">
-            <Link href="route('editCar', {id:id})" class="edit-btn center full-width"
-              >Редактировать</Link
-            >
+            <button class="edit-btn center full-width" @click="addExtence">
+              Добавить расход
+            </button>
           </div>
         </div>
       </div>
@@ -31,12 +31,12 @@
           </form>
         </div>
         <div class="selectCategory">
-          <select name="" id="" class="input">
-            <option value="">Выберите категорию расходов</option>
-            <option :value="item.id" v-for="item in categories" :key="item.id">
-              {{ item.title }}
-            </option>
-          </select>
+          <input
+            type="text"
+            class="input"
+            placeholder="Введите название категории"
+            v-model="searchQuery"
+          />
         </div>
         <div class="carInfo-item-section flex flex-wrap gap40">
           <CategoryCart
@@ -45,12 +45,13 @@
                 ? `${mainStyles} ${sideStyles}`
                 : mainStyles
             "
-            v-for="item in categories"
-            :key="item"
+            v-for="item in filteredCategories"
+            :key="item.id"
             :title="item.title"
             :car_id="id"
             :category="item.id"
-          />
+          >
+          </CategoryCart>
         </div>
       </div>
     </div>
@@ -59,7 +60,6 @@
 
 <script setup>
 import CategoryCart from "@/Components/CategoryCart.vue";
-import { Link } from "@inertiajs/vue3";
 import { ref, reactive, computed, onMounted } from "vue";
 import { router } from "@inertiajs/vue3";
 const props = defineProps({
@@ -92,6 +92,17 @@ const carInfoTitle = [
     fetchInfo: props.carInfo[0].generation.title,
   },
 ];
+
+function addExtence() {}
+
+const searchQuery = ref("");
+const filteredCategories = computed(() => {
+  if (!searchQuery.value) return Object.values(props.categories);
+
+  return Object.values(props.categories).filter((category) =>
+    category.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 
 function capitalize(val) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -126,7 +137,7 @@ function addNewCategory() {
 
 .selectCategory {
   margin-top: var(--mrg40);
-  max-width: 350px;
+  max-width: 450px;
   max-height: 60px;
 }
 </style>

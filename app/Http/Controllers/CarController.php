@@ -2,10 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Models\ExtenceCategory;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 class CarController extends Controller
 {
@@ -21,7 +21,6 @@ class CarController extends Controller
             ],
             'email'    => $user->email,
             'carsInfo' => $cars,
-            '',
         ]);
     }
 

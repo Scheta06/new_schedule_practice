@@ -13,7 +13,7 @@
               {{ email }}
             </h4>
           </div>
-          <button class="edit-btn">Редактировать</button>
+          <Link :href="route('editProfile')" class="edit-btn center">Изменить пароль</Link>
         </div>
       </div>
       <div class="userCars-section column-display gap40 full-width">

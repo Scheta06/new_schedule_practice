@@ -71,7 +71,7 @@ const renderChart = () => {
 
   if (chartCanvas.value) {
     myChart = new Chart(chartCanvas.value, {
-      type: "line",
+      type: "bar",
       data: chartData,
       options: {
         responsive: true,

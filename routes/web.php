@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CategoryController;
@@ -19,6 +20,8 @@ Route::post('/register', [RegisteredUserController::class, 'store'])->name('regi
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cars', [CarController::class, 'index'])->name('myCars');
+    Route::get('/profile/edit', [NewPasswordController::class, 'edit'])->name('editProfile');
+    Route::patch('/profile/update', [NewPasswordController::class, 'update'])->name('updateProfile');
 
     Route::get('/new-car', [NewCarController::class, 'index'])->name('newCar');
     Route::get('/api/patterns', [NewCarController::class, 'getPatterns'])->name('api.patterns');
@@ -29,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/cars/{id}/{category}', [CategoryController::class, 'index'])->name('CategoryCart');
     Route::post('/cars/{id}/add-category', [CategoryController::class, 'store'])->name('addCategory');
-    Route::delete('/cars/{id}/{category}', [CategoryController::class, 'destroy'])->name('deleteCategory'); 
+    Route::delete('/cars/{id}/{category}', [CategoryController::class, 'destroy'])->name('deleteCategory');
 
     Route::post('/cars/{id}/{category}', [ExtenceController::class, 'store'])->name('addExtence');
 
