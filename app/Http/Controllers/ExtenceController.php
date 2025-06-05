@@ -11,27 +11,17 @@ class ExtenceController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'cost' => 'required|numeric|min:0',
+            'cost'  => 'required|numeric|min:0',
         ]);
 
         Extence::create([
-            'title' => $validated['title'],
-            'cost' => $validated['cost'],
-            'car_id' => $id,
+            'title'       => $validated['title'],
+            'cost'        => $validated['cost'],
+            'car_id'      => $id,
             'category_id' => $category,
         ]);
 
         return back()->with('success', 'Расход добавлен');
-    }
-
-    public function orderByCost($id, $category, $extence)
-    {
-        $result = Extence::findOrFail();
-    }
-
-    public function orderByDate()
-    {
-
     }
 
     public function edit($id, $category, $extence)
@@ -41,10 +31,27 @@ class ExtenceController extends Controller
         return Inertia::render('Edit/Extence', ['extenceInfo' => $extenceInfo]);
     }
 
-    public function update($id, $category, Request $request)
+    public function update($id, $category, $extence, Request $request)
     {
-        dd($request);
-        return redirect()->route('CategoryCart', ['id' => $id, 'category' => $category])->with('success', 'Данные изменены');
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'cost'  => 'required|numeric|min:0',
+        ]);
+
+        $extence = Extence::where('id', $extence)
+            ->where('car_id', $id)
+            ->where('category_id', $category)
+            ->firstOrFail();
+
+        $extence->update([
+            'title' => $validated['title'],
+            'cost'  => $validated['cost'],
+        ]);
+
+        return redirect()->route('CategoryCart', [
+            'id'       => $id,
+            'category' => $category,
+        ])->with('success', 'Данные изменены');
     }
 
     public function destroy($carId, $categoryId, $extenceId)

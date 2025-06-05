@@ -1,6 +1,6 @@
 <template>
   <TheHeader />
-  <div class="container center">
+  <div class="container center column-display gap20">
     <form
       @submit.prevent="submit"
       class="form-control column-display full-width"
@@ -18,12 +18,14 @@
       </div>
       <button type="submit" class="login">Войти</button>
     </form>
+    <Link :href="route('registerForm')"><h4>Нет аккаунта? Перейти к регистрации</h4></Link>
   </div>
 </template>
 
 <script setup>
+import { useToast } from "vue-toastification";
 import { ref, reactive } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
 
 const inputValues = reactive([
   {
@@ -44,8 +46,14 @@ const form = useForm({
 });
 
 const submit = () => {
-  form.post(route('login'), {
+  form.post(route("login"), {
     onFinish: () => form.reset("password"),
   });
 };
 </script>
+
+<style scoped>
+h4 {
+    font-weight: var(--bold);
+}
+</style>

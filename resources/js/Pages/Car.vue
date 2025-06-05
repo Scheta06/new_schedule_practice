@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="flex gap10">
-            <button class="edit-btn center full-width" v-if="categories.length !== 0">Добавить расход</button>
+            <button class="edit-btn center full-width" @click="deleteCar">Удалить автомобиль</button>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
           class="flex center column-display gap20"
           v-if="categories.length === 0"
         >
-          <h2>Здесь пока что нет ниодной категории</h2>
+          <h2>Здесь пока что нет категорий</h2>
           <form @submit.prevent="addNewCategory" class="center full-width">
             <button type="submit" class="addCarNothing full-width">
               Добавить
@@ -71,6 +71,7 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification';
 import CategoryCart from "@/Components/CategoryCart.vue";
 import { ref, reactive, computed, onMounted } from "vue";
 import { router } from "@inertiajs/vue3";
@@ -79,6 +80,8 @@ const props = defineProps({
   user_id: Number,
   categories: Object,
 });
+
+const toast = useToast();
 
 const carInfo = reactive(props);
 const id = carInfo["carInfo"][0].id;
@@ -107,27 +110,16 @@ const carInfoTitle = [
   },
 ];
 
-const handleSubmit = (formData) => {
-  router.post(
-    route("addExtence", { id: carId, category: categoryId }),
-    {
-      title: formData.title,
-      cost: formData.cost,
-      car_id: carId,
-      category_id: categoryId,
-    },
-    {
-      preserveScroll: false,
-      onSuccess: (response) => {
-        const newExtence = {
-          id: response.props.extences[response.props.extences.length - 1].id,
-          title: formData.title,
-          cost: formData.cost,
-          created_at: new Date().toISOString().split("T")[0],
-        };
-        extentces.value.push(newExtence);
-      },
-    }
+const deleteCar = () => {
+  if (!confirm("Вы уверены, что хотите удалить автомобиль?")) {
+    return;
+  }
+
+  router.delete(
+    route("deleteCar", {
+      id: id,
+      preserveScroll: true,
+    })
   );
 };
 

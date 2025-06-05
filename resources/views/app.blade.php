@@ -14,5 +14,6 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+        <notification />
     </body>
 </html>

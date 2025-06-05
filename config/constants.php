@@ -3,108 +3,130 @@
 return [
     'seed' => [
         /*Начальные данные для пользователя*/
-        'UserSeeder' => [
-            'surname' => 'кононов',
-            'name' => 'андрей',
+        'UserSeeder'            => [
+            'surname'    => 'кононов',
+            'name'       => 'андрей',
             'patronymic' => 'николаевич',
-            'email' => 'user@example.com',
-            'password' => '123123123',
-            'role' => 'admin',
+            'email'      => 'user@example.com',
+            'password'   => '123123123',
+            'role'       => 'admin',
         ],
         /*Начальные данные для категорий расходов*/
         'ExtenceCategorySeeder' => [
             [
-                'title' => 'Бензин',
+                'title'   => 'Бензин',
                 'user_id' => 1,
-                'car_id' => 1,
+                'car_id'  => 1,
             ],
             [
-                'title' => 'Штрафы',
+                'title'   => 'Штрафы',
                 'user_id' => 1,
-                'car_id' => 1,
+                'car_id'  => 1,
             ],
         ],
         /*Начальные данные для марок авто*/
-        'MarkSeeder' => [
+        'MarkSeeder'            => [
             [
-                'title' => 'toyota'
+                'title' => 'toyota',
             ],
             [
-                'title' => 'mazda'
+                'title' => 'mitsubishi',
             ],
             [
-                'title' => 'nissan'
-            ],
-            [
-                'title' => 'mitsubishi'
-            ],
-            [
-                'title' => 'лада(ваз)'
+                'title' => 'ВАЗ (LADA)',
             ],
         ],
         /*Начальные данные для моделей авто*/
-        'PatternSeeder' => [
+        'PatternSeeder'         => [
             [
-                'title' => 'mark 2',
+                'title'   => 'mark 2',
                 'mark_id' => 1,
             ],
             [
-                'title' => 'galant',
-                'mark_id' => 4,
+                'title'   => 'carina ED',
+                'mark_id' => 1,
             ],
             [
-                'title' => 'legnum',
-                'mark_id' => 4,
+                'title'   => 'galant',
+                'mark_id' => 2,
             ],
             [
-                'title' => 'teana',
+                'title'   => 'legnum',
+                'mark_id' => 2,
+            ],
+            [
+                'title'   => '2113',
+                'mark_id' => 3,
+            ],
+            [
+                'title'   => 'priora',
                 'mark_id' => 3,
             ],
         ],
         /*Начальные данные для поколений авто*/
-        'GenerationSeeder' => [
+        'GenerationSeeder'      => [
             [
-                'title' => 'x100',
+                'title'      => 'x100',
                 'pattern_id' => 1,
             ],
             [
-                'title' => '8',
+                'title'      => 'x90',
+                'pattern_id' => 1,
+            ],
+            [
+                'title'      => 'T200',
                 'pattern_id' => 2,
             ],
             [
-                'title' => 'vr4',
-                'pattern_id' => 2,
+                'title'      => '7',
+                'pattern_id' => 3,
+            ],
+            [
+                'title'      => '8',
+                'pattern_id' => 3,
+            ],
+            [
+                'title'      => 'vr4',
+                'pattern_id' => 4,
+            ],
+            [
+                'title'      => '1 samara',
+                'pattern_id' => 5,
+            ],
+            [
+                'title'      => '1 рестайлинг',
+                'pattern_id' => 6,
             ],
         ],
         /*Начальные данные для расходов на авто*/
-        'ExtenceSeeder' => [
+        'ExtenceSeeder'         => [
             [
-                'title' => 'Оплатил бензин на 1000р 60л',
-                'cost' => 1000,
+                'title'       => 'Оплатил бензин на 1000р 60л',
+                'cost'        => 1000,
                 'category_id' => 1,
-                'car_id' => 1
+                'car_id'      => 1,
             ],
             [
-                'title' => 'Не успел заправиться',
-                'cost' => 1000,
+                'title'       => 'Не успел заправиться',
+                'cost'        => 1000,
                 'category_id' => 1,
-                'car_id' => 1
+                'car_id'      => 1,
             ],
         ],
         /*Начальные данные для авто пользователя*/
-        'CarSeeder' => [
+        'CarSeeder'             => [
             [
-                'title' => 'Бешенная табуретка',
-                'user_id' => 1,
-                'mark_id' => 1,
-                'pattern_id' => 1,
+                'title'         => 'Бешенная табуретка',
+                'user_id'       => 1,
+                'mark_id'       => 1,
+                'pattern_id'    => 1,
                 'generation_id' => 1,
             ],
             [
-                'title' => 'Бешенная табуретка2',
-                'user_id' => 1,
-                'mark_id' => 2,
-                'pattern_id' => 1,
+                'title'         => 'Бешенная табуретка2',
+                'user_id'       => 1,
+                'mark_id'       => 2,
+                'pattern_id'    => 1,
                 'generation_id' => 1,
             ],
         ],

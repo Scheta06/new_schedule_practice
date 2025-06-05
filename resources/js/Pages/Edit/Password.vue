@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification';
 import { useForm } from "@inertiajs/vue3";
 import { reactive } from "vue";
 
@@ -61,7 +62,6 @@ function submit() {
     preserveScroll: true,
     onSuccess: () => {
       form.reset();
-      // Можно добавить уведомление об успехе
     },
     onError: (errors) => {
       console.log("Ошибки валидации:", errors);

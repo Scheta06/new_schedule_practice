@@ -8,7 +8,7 @@
         <h2>{{ ModalWindowInputs.title }}</h2>
         <div class="column-display gap20 full-width">
           <input
-            type="text"
+            :type="props.type"
             class="modalInput"
             v-for="(item, index) in ModalWindowInputs['inputValues']"
             :key="index"

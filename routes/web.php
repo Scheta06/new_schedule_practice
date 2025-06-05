@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/new-car', [NewCarController::class, 'store'])->name('newCar.store');
 
     Route::get('/cars/{id}', [CarController::class, 'show'])->name('carCart');
+    Route::delete('/cars/{id}', [CarController::class, 'destroy'])->name('deleteCar');
 
     Route::get('/cars/{id}/{category}', [CategoryController::class, 'index'])->name('CategoryCart');
     Route::post('/cars/{id}/add-category', [CategoryController::class, 'store'])->name('addCategory');
@@ -36,10 +37,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/cars/{id}/{category}', [ExtenceController::class, 'store'])->name('addExtence');
 
-    Route::get('/cars/{id}/{category}/{extence}/max-cost', [ExtenceController::class, 'edit'])->name('maxCost');
-    Route::get('/cars/{id}/{category}/{extence}/low-cost', [ExtenceController::class, 'edit'])->name('lowCost');
-
-    Route::get('/cars/{id}/{category}/{extence}/new', [ExtenceController::class, 'edit'])->name('lowCost');
+    Route::get('/cars/{id}/{category}/sort-date', [CategoryController::class, 'sortDate'])->name('extences.sort');
 
     Route::get('/cars/{id}/{category}/{extence}/edit', [ExtenceController::class, 'edit'])->name('editExtence');
     Route::patch('/cars/{id}/{category}/{extence}/update', [ExtenceController::class, 'update'])->name('updateExtence');

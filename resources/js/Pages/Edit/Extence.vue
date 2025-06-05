@@ -12,14 +12,14 @@
           class="input"
           name="title"
           placeholder="Название"
-          :value="extence.title"
+          v-model="form.title"
         />
         <input
           type="text"
           class="input"
           name="cost"
           placeholder="Сумма"
-          :value="extence.cost"
+          v-model="form.cost"
         />
       </div>
       <button type="submit" class="login">Изменить</button>
@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+import { useToast } from "vue-toastification";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref } from "vue";
 const props = defineProps({
@@ -35,15 +36,18 @@ const props = defineProps({
 });
 
 const extence = reactive(props.extenceInfo)[0];
+console.log(extence)
 const form = useForm({
-    title: '',
-    cost: ''
+  title: props.extenceInfo[0]?.title || "",
+  cost: props.extenceInfo[0]?.cost || "",
 });
 const submit = () => {
-    form.patch('updateExtence', {
+  form.patch(route("updateExtence", {id: extence.car_id, category: extence.category_id, extence: extence.id}), {
+    title: form.title,
+    cost: form.cost,
 
-    });
-}
+  });
+};
 </script>
 
 <style scoped>

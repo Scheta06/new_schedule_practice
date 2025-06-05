@@ -38,6 +38,7 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification';
 import { reactive, ref } from "vue";
 import CarCart from "@/Components/carCart.vue";
 import { Link } from "@inertiajs/vue3";

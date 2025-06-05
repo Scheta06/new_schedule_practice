@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,18 +10,23 @@ class Extence extends Model
         'cost',
         'category_id',
         'user_id',
-        'car_id'
+        'car_id',
     ];
 
-    public function extenceCategory() {
+    protected $dates = ['created_at', 'updated_at'];
+
+    public function extenceCategory()
+    {
         return $this->belongsTo(ExtenceCategory::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function car() {
+    public function car()
+    {
         return $this->belongsTo(Car::class);
     }
 }
