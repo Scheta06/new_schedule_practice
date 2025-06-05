@@ -15,7 +15,7 @@
 }
 
 .carCart {
-    max-width: 320px;
+    max-width: 340px;
     min-height: 400px;
     background-color: var(--color7);
     border-radius: var(--border-radius0);
@@ -42,9 +42,13 @@
 }
 
 .carInfo-item {
-    max-width: calc((100% / 2) - 20px);
+    max-width: 100%;
     border: 2px solid var(--color7);
-    padding: 25px 50px;
+    padding: 25px 40px;
+}
+
+.car-info {
+    gap: 20px;
 }
 
 .carInfo-item__destroyBtn {
@@ -54,6 +58,25 @@
     border-radius: 6px;
 }
 
-.carInfo-item-title > h2 {
+.carInfo-item-title>h2 {
     font-weight: var(--bold);
+}
+
+@media (max-width:425px) {
+    .user-section {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .carInfo-block {
+        flex-wrap: wrap;
+    }
+
+    .edit-btn, .car-photo, .carCart {
+        max-width: 100%;
+    }
+}
+
+@media (max-width:425px) {
+
 }

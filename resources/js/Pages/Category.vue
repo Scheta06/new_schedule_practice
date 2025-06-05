@@ -2,22 +2,64 @@
   <the-header></the-header>
   <div class="container column-display gap40 full-width">
     <Grafic :ChartData="ChartData" />
-
     <div class="column-display gap20 full-width">
-      <div class="flex gap15">
+      <div class="column-display gap20">
         <h2>{{ title }}</h2>
-        <button @click="addExtence" class="addCar"></button>
+        <div
+          class="actionSection for-over-length gap20"
+          v-if="extentces.length !== 0"
+        >
+          <button @click="isModalOpen = true" class="modalWindow">
+            Добавить расход
+          </button>
+          <ModalWindow
+            v-model="isModalOpen"
+            :ModalWindowInputs="ModalWindowInputs"
+            @close="isModalOpen = false"
+            @submit="handleSubmit"
+          ></ModalWindow>
+          <select name="" id="" class="modalWindow">
+            <option value="">Сортировать по сумме</option>
+          </select>
+          <select name="" id="" class="modalWindow">
+            <option value="">Сортировать по дате</option>
+          </select>
+          <form
+            @submit.prevent="deleteCategory"
+            method="DELETE"
+            class="center full-width"
+          >
+            <button type="submit" class="modalWindow danger">
+              Удалить категорию
+            </button>
+          </form>
+        </div>
       </div>
     </div>
     <div class="extence-section">
-      <table>
+      <div
+        class="full-width center column-display gap20"
+        v-if="extentces.length == 0"
+      >
+        <h2>Здесь пока что нет расходов</h2>
+        <button @click="isModalOpen = true" class="modalWindow addExtence">
+          Добавить расход
+        </button>
+        <ModalWindow
+          v-model="isModalOpen"
+          :ModalWindowInputs="ModalWindowInputs"
+          @close="isModalOpen = false"
+          @submit="handleSubmit"
+        ></ModalWindow>
+      </div>
+      <table v-if="extentces.length !== 0">
         <thead>
           <tr>
             <th v-for="item in theadTitle" :key="item">{{ item }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in extences" :key="item.id">
+          <tr v-for="item in extentces" :key="item.id">
             <td>{{ item.title }}</td>
             <td>{{ item.created_at }}</td>
             <td>{{ item.cost }}</td>
@@ -80,6 +122,7 @@
 </template>
 
 <script setup>
+import ModalWindow from "@/Components/ModalWindow.vue";
 import Grafic from "@/Components/Grafic.vue";
 import { reactive, ref } from "vue";
 import { Link, router } from "@inertiajs/vue3";
@@ -97,31 +140,75 @@ const title = props["categories"].title;
 const theadTitle = ["Название", "Дата", "Сумма", "Действия"];
 const carId = props.id;
 const categoryId = props.category;
+const isModalOpen = ref(false);
+
+console.log(extentces)
+
+const extentcesLength = "";
+
+const ModalWindowInputs = reactive({
+  title: "Добавление расхода",
+  inputValues: [
+    {
+      placeholder: "Название",
+      name: "title",
+    },
+    {
+      placeholder: "Сумма",
+      name: "cost",
+    },
+  ],
+  buttonValues: [
+    {
+      title: "Создать",
+    },
+    {
+      title: "Отмена",
+    },
+  ],
+});
 
 function reverseString(item) {
   return item.split("").reverse().join("");
 }
 
-function addExtence() {
-  const title = prompt("Введите название расхода");
-  const cost = prompt("Введите сумму расхода");
-
+const handleSubmit = (formData) => {
   router.post(
     route("addExtence", { id: carId, category: categoryId }),
     {
-      title: title,
-      cost: cost,
+      title: formData.title,
+      cost: formData.cost,
       car_id: carId,
       category_id: categoryId,
     },
     {
-      preserveScroll: true,
-      onSuccess: () => {
-        router.reload({ only: ["extentces"] });
+      preserveScroll: false,
+      onSuccess: (response) => {
+        const newExtence = {
+          id: response.props.extences[response.props.extences.length - 1].id,
+          title: formData.title,
+          cost: formData.cost,
+          created_at: new Date().toISOString().split("T")[0],
+        };
+        extentces.value.push(newExtence);
       },
     }
   );
-}
+};
+
+const deleteCategory = () => {
+  if (!confirm("Вы уверены, что хотите удалить категорию?")) {
+    return;
+  }
+
+  router.delete(
+    route("deleteCategory", {
+      id: carId,
+      category: categoryId,
+      preserveScroll: true,
+    })
+  );
+};
 
 function deleteExtence(extenceId) {
   if (!confirm("Вы уверены, что хотите удалить этот расход?")) {
@@ -155,6 +242,38 @@ function deleteExtence(extenceId) {
 <style scoped>
 h2 {
   font-weight: var(--bold);
+}
+
+.actionSection {
+  padding: 30px;
+  background-color: var(--color7);
+  border-radius: 6px;
+}
+
+select {
+  border-radius: 6px;
+  padding-left: 30px;
+  font-weight: normal;
+}
+
+.danger {
+  background-color: orange;
+}
+
+.addExtence {
+  background-color: var(--color7);
+}
+
+@media (max-width:768px) {
+    .actionSection {
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    .modalWindow {
+        max-width: 100%;
+    }
 }
 </style>
 

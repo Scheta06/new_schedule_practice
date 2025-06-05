@@ -24,7 +24,7 @@
           :carInfo="newCar"
            class="addCar"></Link>
         </div>
-        <div :class="[counter > 3 ? `${mainStyles} ${justifySB}`: `${mainStyles}`]">
+        <div :class="[carsInfo.length >= 4 ? `${mainStyles} ${justifySB}`: `${mainStyles}`]">
           <CarCart
             v-for="item in carsInfo"
             :key="item.id"

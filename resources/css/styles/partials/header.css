@@ -16,6 +16,7 @@ button.nav-bar-btn {
     width: 25px;
     height: 20px;
     z-index: 999;
+    background: transparent;
 }
 
 .nav-bar-row {

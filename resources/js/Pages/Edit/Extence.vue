@@ -5,7 +5,7 @@
       @submit.prevent="submit"
       class="form-control column-display full-width"
     >
-      <h2>Изменить данные для расхода: {{ extence.title }}</h2>
+      <h2>Изменить данные</h2>
       <div class="full-width column-display gap20">
         <input
           type="text"
@@ -28,12 +28,22 @@
 </template>
 
 <script setup>
+import { useForm } from "@inertiajs/vue3";
 import { reactive, ref } from "vue";
 const props = defineProps({
   extenceInfo: Object,
 });
 
 const extence = reactive(props.extenceInfo)[0];
+const form = useForm({
+    title: '',
+    cost: ''
+});
+const submit = () => {
+    form.patch('updateExtence', {
+
+    });
+}
 </script>
 
 <style scoped>

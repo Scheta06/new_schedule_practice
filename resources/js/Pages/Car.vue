@@ -17,20 +17,32 @@
             </div>
           </div>
           <div class="flex gap10">
-            <button class="edit-btn center full-width" @click="addExtence">
-              Добавить расход
-            </button>
+            <button class="edit-btn center full-width" v-if="categories.length !== 0">Добавить расход</button>
           </div>
         </div>
       </div>
       <div class="carInfo-categories-section">
-        <div class="createAuto flex gap10 column-center">
+        <div
+          class="createAuto flex gap10 column-center"
+          v-if="categories.length !== 0"
+        >
           <h2>Категории расходов</h2>
           <form @submit.prevent="addNewCategory">
             <button type="submit" class="addCar"></button>
           </form>
         </div>
-        <div class="selectCategory">
+        <div
+          class="flex center column-display gap20"
+          v-if="categories.length === 0"
+        >
+          <h2>Здесь пока что нет ниодной категории</h2>
+          <form @submit.prevent="addNewCategory" class="center full-width">
+            <button type="submit" class="addCarNothing full-width">
+              Добавить
+            </button>
+          </form>
+        </div>
+        <div class="selectCategory" v-if="categories.length !== 0">
           <input
             type="text"
             class="input"
@@ -38,7 +50,7 @@
             v-model="searchQuery"
           />
         </div>
-        <div class="carInfo-item-section flex flex-wrap gap40">
+        <div class="carInfo-item-section flex flex-wrap gap20">
           <CategoryCart
             :class="
               categories.length >= 3
@@ -71,6 +83,8 @@ const props = defineProps({
 const carInfo = reactive(props);
 const id = carInfo["carInfo"][0].id;
 
+const isModalOpen = ref(false);
+
 const mainStyles = ref("carInfo-item full-column-display full-width");
 const sideStyles = ref("carInfo-item-medium");
 
@@ -93,7 +107,29 @@ const carInfoTitle = [
   },
 ];
 
-function addExtence() {}
+const handleSubmit = (formData) => {
+  router.post(
+    route("addExtence", { id: carId, category: categoryId }),
+    {
+      title: formData.title,
+      cost: formData.cost,
+      car_id: carId,
+      category_id: categoryId,
+    },
+    {
+      preserveScroll: false,
+      onSuccess: (response) => {
+        const newExtence = {
+          id: response.props.extences[response.props.extences.length - 1].id,
+          title: formData.title,
+          cost: formData.cost,
+          created_at: new Date().toISOString().split("T")[0],
+        };
+        extentces.value.push(newExtence);
+      },
+    }
+  );
+};
 
 const searchQuery = ref("");
 const filteredCategories = computed(() => {
@@ -123,12 +159,8 @@ function addNewCategory() {
 .car-info > .for-over-length {
   margin-top: var(--mrg40);
 }
-.car-info > h2 {
+h2 {
   font-weight: var(--bold);
-}
-
-.edit-btn {
-  max-width: 300px;
 }
 
 .createAuto > h2 {
@@ -139,5 +171,15 @@ function addNewCategory() {
   margin-top: var(--mrg40);
   max-width: 450px;
   max-height: 60px;
+}
+
+.addCarNothing {
+  max-width: 350px;
+  min-height: 60px;
+  font-weight: var(--bold);
+}
+
+.carInfo-categories-section > .flex > h2 {
+    text-align: center;
 }
 </style>

@@ -3,7 +3,7 @@
     <Link :href="route('myCars')" class="logotype">
       {{ logoTitle }}
     </Link>
-    <button class="nav-bar-btn full-column-display" @click="visible = !visible">
+    <button class="nav-bar-btn full-column-display" @click="visible = !visible" @keydown.right="visible = !visible">
       <div class="nav-bar-row" v-for="item in 3" :key="item"></div>
     </button>
     <div class="nav-bar full-height" v-if="visible">

@@ -38,6 +38,9 @@ return [
             [
                 'title' => 'mitsubishi'
             ],
+            [
+                'title' => 'лада(ваз)'
+            ],
         ],
         /*Начальные данные для моделей авто*/
         'PatternSeeder' => [
@@ -49,6 +52,14 @@ return [
                 'title' => 'galant',
                 'mark_id' => 4,
             ],
+            [
+                'title' => 'legnum',
+                'mark_id' => 4,
+            ],
+            [
+                'title' => 'teana',
+                'mark_id' => 3,
+            ],
         ],
         /*Начальные данные для поколений авто*/
         'GenerationSeeder' => [
@@ -58,6 +69,10 @@ return [
             ],
             [
                 'title' => '8',
+                'pattern_id' => 2,
+            ],
+            [
+                'title' => 'vr4',
                 'pattern_id' => 2,
             ],
         ],
