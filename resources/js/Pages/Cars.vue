@@ -21,8 +21,9 @@
           <h2>Мои автомобили</h2>
           <Link
           :href="route(`${href}`)"
-          :carInfo="newCar"
-           class="addCar"></Link>
+          :carInfo="newCar">
+           <AddCar />
+           </Link>
         </div>
         <div :class="[carsInfo.length >= 4 ? `${mainStyles} ${justifySB}`: `${mainStyles}`]">
           <CarCart
@@ -42,6 +43,7 @@
 import { reactive, ref } from "vue";
 import CarCart from "@/Components/carCart.vue";
 import { Link } from "@inertiajs/vue3";
+import AddCar from "@/Components/AddCar.vue";
 const props = defineProps({
   user: {
     type: Object,

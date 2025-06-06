@@ -17,6 +17,14 @@ button {
     border-radius: var(--border-radius2);
 }
 
+button.danger, a.danger {
+    transition: all .3s ease;
+}
+
+button.danger:hover, a.danger:hover {
+    background-color: rgb(250, 206, 123);
+}
+
 .transparentBtn {
     background-color: transparent;
 }
@@ -229,7 +237,7 @@ ul {
 }
 
 .danger {
-    background-color: orange;
+    background-color: var(--color7);
 }
 
 @media (max-width:768px) {

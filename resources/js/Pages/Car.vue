@@ -17,7 +17,12 @@
             </div>
           </div>
           <div class="flex gap10">
-            <button class="danger edit-btn center full-width " @click="deleteCar">Удалить автомобиль</button>
+            <button
+              class="danger edit-btn center full-width"
+              @click="deleteCar"
+            >
+              Удалить автомобиль
+            </button>
           </div>
         </div>
       </div>
@@ -28,7 +33,7 @@
         >
           <h2>Категории расходов</h2>
           <form @submit.prevent="addNewCategory">
-            <button type="submit" class="addCar"></button>
+            <AddCar/>
           </form>
         </div>
         <div
@@ -52,11 +57,7 @@
         </div>
         <div class="carInfo-item-section flex flex-wrap gap20">
           <CategoryCart
-            :class="
-              categories.length >= 3
-                ? `${mainStyles} ${sideStyles}`
-                : mainStyles
-            "
+            class="carInfo-item full-center-row-display full-width"
             v-for="item in filteredCategories"
             :key="item.id"
             :title="item.title"
@@ -71,7 +72,7 @@
 </template>
 
 <script setup>
-
+import AddCar from '@/Components/AddCar.vue'
 import CategoryCart from "@/Components/CategoryCart.vue";
 import { ref, reactive, computed, onMounted } from "vue";
 import { router } from "@inertiajs/vue3";
@@ -85,9 +86,6 @@ const carInfo = reactive(props);
 const id = carInfo["carInfo"][0].id;
 
 const isModalOpen = ref(false);
-
-const mainStyles = ref("carInfo-item full-column-display full-width");
-const sideStyles = ref("carInfo-item-medium");
 
 const carInfoTitle = [
   {
@@ -170,6 +168,6 @@ h2 {
 }
 
 .carInfo-categories-section > .flex > h2 {
-    text-align: center;
+  text-align: center;
 }
 </style>

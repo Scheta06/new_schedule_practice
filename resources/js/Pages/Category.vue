@@ -28,7 +28,7 @@
             method="DELETE"
             class="center full-width"
           >
-            <button type="submit" class="modalWindow danger">
+            <button type="submit" class="modalWindow danger" id="deleteCategoryId">
               Удалить категорию
             </button>
           </form>
@@ -290,6 +290,10 @@ select {
   border-radius: 6px;
   padding-left: 30px;
   font-weight: normal;
+}
+
+#deleteCategoryId {
+    background-color: orange;
 }
 
 .addExtence {

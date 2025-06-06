@@ -59,3 +59,35 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+**** ИНСТРУКИЦЯ ПО ЗАПУСКУ ПРОЕКТА ****
+
+Установка зависимостей
+1) В терминале поочередно пропишите следующие команды:
+1.1) composer install (либо composer update)
+1.2) npm install
+
+Настройка файла .env, подключение БД
+2) В терминале поочередно пропишите следующие команды:
+2.1) cp .env.example .env
+2.2) php artisan key:generate
+
+2.3) Заполните .env данными
+
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=laravel
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+2.4) php artisan migrate:fresh --seed
+
+Запуск проекта
+3) В терминале поочередно пропишите следующие команды:
+3.1) php artisan serve
+3.2) npm run dev
+
+Результат
+4) Перейдите по 127.0.0.1:{ваш_порт_подключения}
