@@ -2,7 +2,7 @@ import '../css/app.css';
 import './bootstrap';
 
 import Notification from './Components/Notification.vue';
-import Toast from 'vue-toastification';
+
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import GlobalComponent from '@/plugins.js'
@@ -29,7 +29,6 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(GlobalComponent)
-            .use(Toast)
             .mount(el);
     },
     progress: {

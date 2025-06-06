@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-import { useToast } from "vue-toastification";
 import { ref, reactive } from "vue";
 import { Link, useForm } from "@inertiajs/vue3";
 

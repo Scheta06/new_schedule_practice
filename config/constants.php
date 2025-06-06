@@ -86,7 +86,7 @@ return [
                 'pattern_id' => 3,
             ],
             [
-                'title'      => 'vr4',
+                'title'      => 'VR4',
                 'pattern_id' => 4,
             ],
             [
@@ -126,8 +126,8 @@ return [
                 'title'         => 'Бешенная табуретка2',
                 'user_id'       => 1,
                 'mark_id'       => 2,
-                'pattern_id'    => 1,
-                'generation_id' => 1,
+                'pattern_id'    => 4,
+                'generation_id' => 6,
             ],
         ],
     ],

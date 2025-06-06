@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { useToast } from 'vue-toastification';
+
 import { reactive } from "vue";
 import { useForm, Link } from "@inertiajs/vue3";
 const inputValues = reactive([

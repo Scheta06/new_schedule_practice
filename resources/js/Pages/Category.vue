@@ -123,7 +123,7 @@
 </template>
 
 <script setup>
-import { useToast } from 'vue-toastification';
+
 import ModalWindow from "@/Components/ModalWindow.vue";
 import Grafic from "@/Components/Grafic.vue";
 import { reactive, ref, watch } from "vue";
@@ -290,10 +290,6 @@ select {
   border-radius: 6px;
   padding-left: 30px;
   font-weight: normal;
-}
-
-.danger {
-  background-color: orange;
 }
 
 .addExtence {

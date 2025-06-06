@@ -3,6 +3,7 @@
     <div class="container center full-width">
       <form
         @submit.prevent="submitForm"
+        id="modalWindowVue"
         class="form-control column-display gap40 center full-width"
       >
         <h2>{{ ModalWindowInputs.title }}</h2>
@@ -69,10 +70,15 @@ const submitForm = () => {
   justify-content: center;
   align-items: center;
 }
+
 .form-control {
   background-color: white;
   padding: 50px;
   border-radius: 6px;
+}
+
+.modalWindowVue {
+    z-index: 999;
 }
 
 .modalInput {
@@ -91,5 +97,11 @@ h2 {
   width: 100%;
   min-height: 60px;
   background-color: #b1d4dd;
+}
+
+@media (max-width:768px) {
+    .form-control {
+        padding: 20px;
+    }
 }
 </style>

@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { useToast } from 'vue-toastification';
+
 import Welcome from "./../Components/Welcome.vue";
 import TheHeader from "@/Components/TheHeader.vue";
 import Cars from "@/Pages/Cars.vue";

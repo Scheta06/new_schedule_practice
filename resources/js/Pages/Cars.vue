@@ -4,7 +4,7 @@
     <div class="profile column-display">
       <div class="user-section flex gap40">
         <div class="user-photo full-width"></div>
-        <div class="user-info full-column-display">
+        <div class="user-info full-column-display gap10">
           <h2>
             {{ fullName }}
           </h2>
@@ -13,7 +13,7 @@
               {{ email }}
             </h4>
           </div>
-          <Link :href="route('editProfile')" class="edit-btn center">Изменить пароль</Link>
+          <Link :href="route('editProfile')" class="edit-btn center danger">Изменить пароль</Link>
         </div>
       </div>
       <div class="userCars-section column-display gap40 full-width">
@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { useToast } from 'vue-toastification';
+
 import { reactive, ref } from "vue";
 import CarCart from "@/Components/carCart.vue";
 import { Link } from "@inertiajs/vue3";

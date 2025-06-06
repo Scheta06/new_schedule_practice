@@ -228,6 +228,10 @@ ul {
     font-weight: var(--bold);
 }
 
+.danger {
+    background-color: orange;
+}
+
 @media (max-width:768px) {
     * {
         font-size: 12px;
@@ -241,6 +245,10 @@ ul {
     }
 
     .container {
-        padding: 160px 15px;
+        padding: 160px 15px 40px 15px;
+    }
+
+    .form-control {
+        padding: 20px;
     }
 }

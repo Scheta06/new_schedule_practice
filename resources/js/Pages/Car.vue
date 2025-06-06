@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="flex gap10">
-            <button class="edit-btn center full-width" @click="deleteCar">Удалить автомобиль</button>
+            <button class="danger edit-btn center full-width " @click="deleteCar">Удалить автомобиль</button>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
 </template>
 
 <script setup>
-import { useToast } from 'vue-toastification';
+
 import CategoryCart from "@/Components/CategoryCart.vue";
 import { ref, reactive, computed, onMounted } from "vue";
 import { router } from "@inertiajs/vue3";
@@ -80,8 +80,6 @@ const props = defineProps({
   user_id: Number,
   categories: Object,
 });
-
-const toast = useToast();
 
 const carInfo = reactive(props);
 const id = carInfo["carInfo"][0].id;
